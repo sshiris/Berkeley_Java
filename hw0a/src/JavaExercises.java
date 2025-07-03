@@ -26,6 +26,11 @@ public class JavaExercises {
      */
     public static void printIndexed(String s) {
         // TODO: Fill in this function
+        for (int i = 0; i < s.length(); i++) {
+            int index = s.length()-i-1;
+            System.out.print(s.charAt(i));
+            System.out.print(index);
+        }
     }
 
     /**
