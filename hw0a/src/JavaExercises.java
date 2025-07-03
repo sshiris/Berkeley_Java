@@ -13,6 +13,11 @@ public class JavaExercises {
      */
     public static void starTriangle() {
         // TODO: Fill in this function
+        String symbol = "*";
+        for (int i = 0; i < 5; i++) {
+            System.out.println(symbol);
+            symbol += "*";
+        }
     }
 
     /**
