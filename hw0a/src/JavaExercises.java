@@ -39,8 +39,12 @@ public class JavaExercises {
      */
     public static String stutter(String s) {
         // TODO: Fill in this function
-
-        return null;
+        if (s == null){ return null;};
+        StringBuilder sb = new StringBuilder(s.length()*2);
+        for (int i = 0; i < s.length(); i++) {
+            sb.append(s.charAt(i)).append(s.charAt(i));
+        }
+        return sb.toString();
     }
 
     /**
