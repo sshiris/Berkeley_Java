@@ -19,7 +19,13 @@ public class JavaExercises {
      *  In any other case, return an empty String[] of size 3. */
     public static String[] takeOrder(String customer) {
         // TODO: Fill in this function.
-        return null;
+        if ("Ergun".equals(customer)){
+            return new String[] {"beyti", "pizza", "hamburger", "tea"};
+        }else if("Erik".equals(customer)){
+            return new String[] {"sushi", "pasta", "avocado", "coffee"};
+        }else{
+            return new String[3];
+        }
     }
 
     /** Returns the positive difference between the maximum element and minimum element of the given array.
