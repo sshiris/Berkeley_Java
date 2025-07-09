@@ -31,8 +31,16 @@ public class JavaExercises {
     /** Returns the positive difference between the maximum element and minimum element of the given array.
      *  Assumes array is nonempty. */
     public static int findMinMax(int[] array) {
-        // TODO: Fill in this function.
-        return 0;
+        // TODO: Fill in this function
+        for (int i = 0; i < array.length; i++) {
+            for (int j = i+1; j < array.length; j++) {
+                if (array[i]>array[j]){
+                    array[j] = array[i];
+                    array[i] = array[j];
+                }
+            }
+        }
+        return array[array.length-1] - array[0];
     }
 
     /**
