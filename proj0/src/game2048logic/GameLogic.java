@@ -30,6 +30,19 @@ public class GameLogic {
         if(targetRow != r){
             board[r][c] = 0;
         }
+
+        int mergeRow = targetRow;
+        if(targetRow>0){
+            if(board[targetRow][c] == board[targetRow-1][c] && (board[targetRow][c] !=0)){
+                mergeRow -= 1;
+                board[mergeRow][c] = value + value;
+                if(targetRow != mergeRow){
+                    board[targetRow][c] = 0;
+                }
+                return mergeRow + 1;
+            }
+        }
+
         return 0;
     }
 
