@@ -1,6 +1,7 @@
 package bomb;
 
 import common.IntList;
+import edu.princeton.cs.algs4.In;
 
 public class BombMain {
     public static void answers(String[] args) {
@@ -14,10 +15,15 @@ public class BombMain {
             b.phase0("39291226");
         }
         if (phase >= 1) {
-            b.phase1(null); // Figure this out too
+            int[] values = {8,0,3,9,0};
+            IntList password = null;
+            for (int value : values){
+                password = new IntList(value,password);
+            }
+            b.phase1(password); // Figure this out too
         }
         if (phase >= 2) {
-            b.phase2("Figure this out. I wonder where the phases are defined...");
+            b.phase2("793227803");
         }
     }
 }
