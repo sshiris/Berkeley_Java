@@ -42,7 +42,6 @@ public class GameLogic {
                 return mergeRow + 1;
             }
         }
-
         return 0;
     }
 
@@ -55,6 +54,13 @@ public class GameLogic {
      */
     public static void tiltColumn(int[][] board, int c) {
         // TODO: fill this in in task 5
+        int minR = 0;
+        for(int i = 0; i <= 3; i ++){
+            int new_minR = moveTileUpAsFarAsPossible(board,i,c,minR);
+            if(new_minR>minR){
+                minR = new_minR;
+            }
+        }
         return;
     }
 
