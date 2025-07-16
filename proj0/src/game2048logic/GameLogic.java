@@ -22,7 +22,7 @@ public class GameLogic {
         // TODO: Fill this in in tasks 2, 3, 4
         int value = board[r][c];
         int targetRow = r;
-        while (targetRow > 0 && board[targetRow -1][c] == 0){
+        while (targetRow > 0 && board[targetRow -1][c] == 0 && targetRow > minR) {
             targetRow -=1;
         }
 
@@ -32,7 +32,7 @@ public class GameLogic {
         }
 
         int mergeRow = targetRow;
-        if(targetRow>0){
+        if(targetRow>0 && targetRow > minR){
             if(board[targetRow][c] == board[targetRow-1][c] && (board[targetRow][c] !=0)){
                 mergeRow -= 1;
                 board[mergeRow][c] = value + value;
