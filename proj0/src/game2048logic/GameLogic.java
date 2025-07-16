@@ -20,11 +20,21 @@ public class GameLogic {
      */
     public static int moveTileUpAsFarAsPossible(int[][] board, int r, int c, int minR) {
         // TODO: Fill this in in tasks 2, 3, 4
+        int value = board[r][c];
+        int targetRow = r;
+        while (targetRow > 0 && board[targetRow -1][c] == 0){
+            targetRow -=1;
+        }
+
+        board[targetRow][c] = value;
+        if(targetRow != r){
+            board[r][c] = 0;
+        }
         return 0;
     }
 
     /**
-     * Modifies the board to simulate the process of tilting column c
+     * Modifies the board to simulate the process of tilting column cmu7=
      * upwards.
      *
      * @param board     the current state of the board
