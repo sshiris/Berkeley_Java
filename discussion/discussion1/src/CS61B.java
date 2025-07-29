@@ -2,19 +2,18 @@ public class CS61B {
     public static String university;
     public String semester;
     public  CS61BStudent[] students;
+    int capacity;
 
     public CS61B(int capacity, CS61BStudent[] signups, String semester){
         this.semester = semester;
-        this.students = new CS61BStudent[capacity];
-        for (int i = 0; i < capacity; i++) {
-            this.students[i] = signups[i];
-        }
+        this.capacity = capacity;
+        this.students = signups;
     }
 
     public int makeStudentsWatchLectureLecture(){
         int total = 0;
-        for(CS61BStudent student : students){
-            boolean watched = student.watchLecture();
+        for(int i =0; i < capacity; i++){
+            boolean watched = students[i].watchLecture();
             if(watched){
                 total += 1;
             }
@@ -27,6 +26,6 @@ public class CS61B {
     }
 
     public void changeCapacity(int newCapacity){
-
+        capacity = newCapacity;
     }
 }
