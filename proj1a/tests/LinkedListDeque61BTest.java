@@ -58,12 +58,30 @@ public class LinkedListDeque61BTest {
 
     // Below, you'll write your own tests for LinkedListDeque61B.
     @Test
+    public void removeFirstAndRemoveLast(){
+        Deque61B<Integer> lld1 = new LinkedListDeque61B<>();
+        assertThat(lld1.removeFirst()).isNull();
+        assertThat(lld1.removeLast()).isNull();
+
+        lld1.addLast(0);   // [0]
+        lld1.addLast(1);   // [0, 1]
+        lld1.addFirst(-1); // [-1, 0, 1]
+        lld1.addLast(2);   // [-1, 0, 1, 2]
+        lld1.addFirst(-2); // [-2, -1, 0, 1, 2]
+
+        lld1.removeFirst();
+        lld1.removeLast();
+        assertThat(lld1.toList()).containsExactly(-1,0,1).inOrder();
+    }
+    @Test
     public void isEmptyTest(){
          Deque61B<Integer> lld1 = new LinkedListDeque61B<>();
          assertThat(lld1.isEmpty()).isTrue();
 
          lld1.addFirst(5);
          assertThat(lld1.isEmpty()).isFalse();
+         lld1.removeFirst();
+         assertThat(lld1.isEmpty()).isTrue();
     }
 
     @Test
@@ -71,8 +89,15 @@ public class LinkedListDeque61BTest {
          Deque61B<Integer> lld1 = new LinkedListDeque61B<>();
          assertThat(lld1.size()).isEqualTo(0);
 
-         lld1.addFirst(2);
-         assertThat(lld1.size()).isEqualTo(1);
+        lld1.addLast(0);   // [0]
+        lld1.addLast(1);   // [0, 1]
+        lld1.addFirst(-1); // [-1, 0, 1]
+        lld1.addLast(2);   // [-1, 0, 1, 2]
+        lld1.addFirst(-2); // [-2, -1, 0, 1, 2]
+
+        lld1.removeLast();
+        lld1.removeFirst();
+        assertThat(lld1.size()).isEqualTo(3);
     }
 
     @Test
@@ -81,9 +106,21 @@ public class LinkedListDeque61BTest {
         assertThat(lld1.isEmpty()).isTrue();
         assertThat(lld1.size()).isEqualTo(0);
 
-        lld1.addFirst(5);
+        lld1.addLast(0);   // [0]
+        lld1.addLast(1);   // [0, 1]
+        lld1.addFirst(-1); // [-1, 0, 1]
+        lld1.addLast(2);   // [-1, 0, 1, 2]
+        lld1.addFirst(-2); // [-2, -1, 0, 1, 2]
+
+        lld1.removeFirst();
+        lld1.removeLast();
         assertThat(lld1.isEmpty()).isFalse();
-        assertThat(lld1.size()).isEqualTo(1);
+        assertThat(lld1.size()).isEqualTo(3);
+        lld1.removeLast();
+        lld1.removeLast();
+        lld1.removeFirst();
+        assertThat(lld1.isEmpty()).isTrue();
+        assertThat(lld1.size()).isEqualTo(0);
     }
 
     @Test
