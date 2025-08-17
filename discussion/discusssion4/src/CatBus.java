@@ -9,7 +9,7 @@ public class CatBus implements Vehicle,Noisemaker{
 
     }
 
-    public void conversation(CatBus target){
+    public void conversation(Noisemaker target){
         makeNoise();
         target.makeNoise();
     }
