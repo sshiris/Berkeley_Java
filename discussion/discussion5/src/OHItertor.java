@@ -5,7 +5,7 @@ public class OHItertor implements Iterator<OHRequest>{
     private OHRequest curr;
 
     public OHItertor(OHRequest request){
-        request = curr;
+        curr = request;
     }
 
     public static boolean isGood(String description){
@@ -14,10 +14,10 @@ public class OHItertor implements Iterator<OHRequest>{
 
     @Override
     public boolean hasNext() {
-        while(!isGood(curr.description) && curr.next != null){
+        while(curr != null && !isGood(curr.description)){
             curr = curr.next;
         }
-        if (curr.next != null){
+        if (curr != null){
             return true;
         }else{
             return false;
