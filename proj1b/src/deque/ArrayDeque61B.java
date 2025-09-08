@@ -8,9 +8,11 @@ public class ArrayDeque61B<T> implements Deque61B<T>{
     int frontPosition;
     int backPosition;
     private T[] items;
+    public int count;
 
     public ArrayDeque61B(){
         size = 8;
+        count = 0;
         frontPosition = 0;
         backPosition = 0;
         items =(T[]) new Object[size];
@@ -18,15 +20,16 @@ public class ArrayDeque61B<T> implements Deque61B<T>{
 
     @Override
     public void addFirst(T x) {
+        frontPosition = Math.floorMod(frontPosition-1, size);// we want the first element to be added in the last at starting position 0
         items[frontPosition] = x;
-        frontPosition = Math.floorMod(frontPosition-1, size);
-
+        count +=1;
     }
 
     @Override
     public void addLast(T x) {
         items[backPosition] = x;
         backPosition = Math.floorMod(backPosition+1, size);
+        count += 1;
     }
 
     @Override
@@ -36,12 +39,12 @@ public class ArrayDeque61B<T> implements Deque61B<T>{
 
     @Override
     public boolean isEmpty() {
-        return false;
+        return count == 0;
     }
 
     @Override
     public int size() {
-        return 0;
+        return size;
     }
 
     @Override
@@ -56,7 +59,10 @@ public class ArrayDeque61B<T> implements Deque61B<T>{
 
     @Override
     public T get(int index) {
-        return null;
+        if (index >= size || index < 0){
+            return null;
+        }
+        return items[index];
     }
 
     @Override
