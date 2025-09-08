@@ -1,45 +1,48 @@
 package deque;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
 public class ArrayDeque61B<T> implements Deque61B<T>{
-    int size;
-    int frontPosition;
-    int backPosition;
+    private int size;
+    private int frontPosition;
+    private int backPosition;
     private T[] items;
-    public int count;
 
     public ArrayDeque61B(){
-        size = 8;
-        count = 0;
         frontPosition = 0;
         backPosition = 0;
-        items =(T[]) new Object[size];
+        items =(T[]) new Object[8];
+        size = 0;
     }
 
     @Override
     public void addFirst(T x) {
-        frontPosition = Math.floorMod(frontPosition-1, size);// we want the first element to be added in the last at starting position 0
+        frontPosition = Math.floorMod(frontPosition-1, items.length);// we want the first element to be added in the last at starting position 0
         items[frontPosition] = x;
-        count +=1;
+        size +=1;
     }
 
     @Override
     public void addLast(T x) {
         items[backPosition] = x;
-        backPosition = Math.floorMod(backPosition+1, size);
-        count += 1;
+        backPosition = Math.floorMod(backPosition+1, items.length);
+        size += 1;
     }
 
     @Override
     public List<T> toList() {
-        return List.of();
+        List<T> returnList = new ArrayList<>();
+        for (int i = 0; i < size; i++) {
+            returnList.add(get(i));
+        }
+        return returnList;
     }
 
     @Override
     public boolean isEmpty() {
-        return count == 0;
+        return size == 0;
     }
 
     @Override
@@ -49,24 +52,41 @@ public class ArrayDeque61B<T> implements Deque61B<T>{
 
     @Override
     public T removeFirst() {
-        return null;
+        if(size == 0){
+            return null;
+        }
+        T first = items[frontPosition];
+        items[frontPosition]= null;
+        frontPosition = (frontPosition+1)%items.length;
+        size -=1;
+        return first;
     }
 
     @Override
     public T removeLast() {
-        return null;
+        if(size == 0){
+            return null;
+        }
+        backPosition = (backPosition-1 + items.length)% items.length;
+        T last = items[backPosition];
+        items[backPosition]= null;
+        size--;
+        return last;
     }
 
     @Override
     public T get(int index) {
-        if (index >= size || index < 0){
+        if (index >= size || index < 0)
+        {
             return null;
         }
-        return items[index];
+        int actualIndex = (frontPosition+index)% items.length;
+        return items[actualIndex];
     }
 
     @Override
     public T getRecursive(int index) {
-        return null;
+        throw new UnsupportedOperationException("No need to implement getRecursive for proj 1b");
     }
+
 }

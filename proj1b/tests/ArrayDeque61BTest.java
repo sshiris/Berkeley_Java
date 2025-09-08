@@ -4,6 +4,7 @@ import jh61b.utils.Reflection;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.lang.reflect.Array;
 import java.lang.reflect.Field;
 import java.util.List;
 
@@ -26,24 +27,34 @@ public class ArrayDeque61BTest {
      void testAddFirstAndAddLastAndGet(){
          ArrayDeque61B<String> deque = new ArrayDeque61B<>();
 
+         assertThat(deque.isEmpty()).isTrue();
+
         deque.addLast("a");  // [a]
         deque.addLast("b");  // [a, b]
         deque.addFirst("c"); // [a, b, c]
         deque.addLast("d");  // [a, b, d, c]
 
-        int count = deque.count;
-        assertThat(count).isEqualTo(4);
+        assertThat(deque.size()).isEqualTo(4);
+        assertThat(deque.isEmpty()).isFalse();
 
         deque.addLast("e");  // [a, b, d, e, c]
         deque.addFirst("f"); // [a, b, d, e, f, c]
         deque.addLast("g");  // [a, b, d, e, g, f, c]
         deque.addLast("h");  // [a, b, d, e, g, h, f, c]
 
-         String item = deque.get(7); //c
-         assertThat(item).isEqualTo("c");
+         String item = deque.get(7); //h
+         assertThat(item).isEqualTo("h");
 
          int size = deque.size();//8
          assertThat(size).isEqualTo(8);
+
+         List<String> list = deque.toList();
+         assertThat(list).isEqualTo(List.of("f", "c","a","b", "d", "e", "g", "h"));
+
+         deque.removeFirst();
+         deque.removeLast();
+         List<String> list2 = deque.toList();
+         assertThat(list2).isEqualTo(List.of("c","a","b", "d", "e", "g"));
 
     }
 
