@@ -45,8 +45,16 @@ public class Maximizer61B {
      * @return          the maximum element according to the comparator
      */
     public static <T> T max(Iterable<T> iterable, Comparator<T> comp) {
-
-        return null;
+        Iterator<T> iterator = iterable.iterator();
+        T maxSoFar = iterator.next();
+        while(iterator.hasNext()){
+            T nextItem = iterator.next();
+            int result = comp.compare(maxSoFar,nextItem);
+            if(result < 0){
+                maxSoFar = nextItem;
+            }
+        }
+        return maxSoFar;
     }
 
     public static void main(String[] args) {

@@ -1,10 +1,11 @@
 package deque;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
-public class ArrayDeque61B<T> implements Deque61B<T>{
+public class ArrayDeque61B<T> implements Deque61B<T>, Iterable<T>{
     private int size;
     private int frontPosition;
     private int backPosition;
@@ -89,4 +90,26 @@ public class ArrayDeque61B<T> implements Deque61B<T>{
         throw new UnsupportedOperationException("No need to implement getRecursive for proj 1b");
     }
 
+    @Override
+    public Iterator<T> iterator() {
+        return new Arraydeque61BIterator();
+    }
+    private class Arraydeque61BIterator implements Iterator<T>{
+        public int position;
+        public Arraydeque61BIterator(){
+            position = 0;
+        }
+
+        @Override
+        public boolean hasNext() {
+            return position < size;
+        }
+
+        @Override
+        public T next() {
+            T item = get(position);
+            position++;
+            return item;
+        }
+    }
 }
