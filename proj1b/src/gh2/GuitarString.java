@@ -26,7 +26,7 @@ public class GuitarString {
         int capacity =(int)Math.round(SR/frequency) ;
         buffer = new ArrayDeque61B<>();
         for(int i = 0; i < capacity; i++){
-            buffer.addFirst(0.0);
+            buffer.addLast(0.0);
         }
     }
 
