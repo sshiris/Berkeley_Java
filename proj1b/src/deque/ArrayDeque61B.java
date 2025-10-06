@@ -20,6 +20,9 @@ public class ArrayDeque61B<T> implements Deque61B<T>, Iterable<T>{
 
     @Override
     public void addFirst(T x) {
+        if(size == items.length){
+            resize(items.length*2);
+        }
         frontPosition = Math.floorMod(frontPosition-1, items.length);// we want the first element to be added in the last at starting position 0
         items[frontPosition] = x;
         size +=1;
@@ -27,9 +30,21 @@ public class ArrayDeque61B<T> implements Deque61B<T>, Iterable<T>{
 
     @Override
     public void addLast(T x) {
+        if(size == items.length){
+            resize(items.length*2);
+        }
         items[backPosition] = x;
         backPosition = Math.floorMod(backPosition+1, items.length);
         size += 1;
+    }
+    private void resize(int capacity){
+        T[] newArray = (T[]) new Object[capacity];
+        for (int i = 0; i < size; i++) {
+            newArray[i]=get(i);
+        }
+        items = newArray;
+        frontPosition = 0;
+        backPosition = size;
     }
 
     @Override
